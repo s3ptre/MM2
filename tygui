@@ -1,0 +1,34 @@
+-- Create a ScreenGui (to hold the UI elements)
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+-- Create the main frame (Executor GUI)
+local executorFrame = Instance.new("Frame")
+executorFrame.Size = UDim2.new(0.3, 0, 0.3, 0) -- Set to 30% of the screen width/height
+executorFrame.Position = UDim2.new(0.35, 0, 0.35, 0) -- Centered on the screen
+executorFrame.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2) -- Dark grey color
+executorFrame.BorderSizePixel = 0
+executorFrame.Parent = screenGui
+
+-- Optional: Add a title to the executor frame
+local tisstle = Instance.new("TextLabel")
+tisstle.Size = UDim2.new(1, 0, 0.1, 0) -- Full width, 20% height
+tisstle.Position = UDim2.new(0, 0, 0, 0) -- Top of the frame
+tisstle.BackgroundTransparency = 1
+tisstle.Text = "Thanks for using my script"
+tisstle.TextColor3 = Color3.new(1, 1, 1) -- White text
+tisstle.Font = Enum.Font.SourceSans
+tisstle.TextScaled = true
+tisstle.Parent = executorFrame
+
+-- Create a black screen (Frame)
+local blackScreen = Instance.new("Frame")
+blackScreen.Size = UDim2.new(1, 0, 0.1, 0)  -- Full screen
+blackScreen.Position = UDim2.new(0, 0, 0, 0)
+blackScreen.BackgroundColor3 = Color3.new(0, 0, 0) -- Black color
+blackScreen.BorderSizePixel = 0
+blackScreen.Parent = screenGui
+
+-- Wait 10 seconds, then remove the black screen
+wait(80)
+blackScreen:Destroy()
