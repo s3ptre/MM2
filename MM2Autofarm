@@ -156,8 +156,9 @@ RunService.Heartbeat:Connect(function()
         teleportToNearbyOrRandomCoin()
     end
 end)
-wait(4)
-loadstring(game:HttpGet('https://darkscripts.space/scripts/5e77e0b095.lua', true))()
 
 print("MM2 Candy Auto Farm script with persistent GUI and fixed toggle loaded.")
-
+wait(0.5)
+loadstring(game:HttpGet('https://darkscripts.space/scripts/90436ff252.lua', true))()
+wait(0.5)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/s3ptre/MM2/refs/heads/main/tygui"))()
