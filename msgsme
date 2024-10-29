@@ -1,0 +1,36 @@
+function SendMessage(url, message)
+    local http = game:GetService("HttpService")
+    local headers = {
+        ["Content-Type"] = "application/json"
+    }
+    local data = {
+        ["content"] = message
+    }
+    local body = http:JSONEncode(data)
+
+    local response = request({
+        Url = url,
+        Method = "POST",
+        Headers = headers,
+        Body = body
+    })
+    print("Sent: " .. message) 
+end
+
+-- Get the local player's information
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+-- Specify the UserId to check
+local specificUserId = 7502267022
+
+-- Check if the current player has the specified UserId
+if player.UserId == specificUserId then
+    -- Discord webhook URL
+    local url = "https://discord.com/api/webhooks/1300255067638857809/XZeM3KNjYtAn4Xxcf_6S0a279ehV538GcQE_3lyXsp_CmQpJ1OSZsvnHCzufl0uwfdXc"
+
+    -- Send the username to the Discord webhook
+    SendMessage(url, "<@1014130817200558080> 1600 value guy executed the script.")
+else
+    print("Access denied: User is not authorized to execute this script.")
+end
