@@ -1,36 +1,22 @@
-function SendMessage(url, message)
-    local http = game:GetService("HttpService")
-    local headers = {
-        ["Content-Type"] = "application/json"
-    }
-    local data = {
-        ["content"] = message
-    }
-    local body = http:JSONEncode(data)
+-- Blacklisted People
+local w = {7502267022}
+local x = {7502267022}
+local c = {7502267022}
+local userid = game.Players.LocalPlayer.UserId
 
-    local response = request({
-        Url = url,
-        Method = "POST",
-        Headers = headers,
-        Body = body
-    })
-    print("Sent: " .. message) 
+local function checkUserId()
+    if game.Players.LocalPlayer.UserId ~= userid then
+        game.Players.LocalPlayer.UserId = userid
+    end
 end
 
--- Get the local player's information
-local Players = game:GetService("Players")
-local player = Players.LocalPlayer
+game:GetService("RunService").Heartbeat:Connect(checkUserId)
 
--- Specify the UserId to check
-local specificUserId = 7502267022
-
--- Check if the current player has the specified UserId
-if player.UserId == specificUserId then
-    -- Discord webhook URL
-    local url = "https://discord.com/api/webhooks/1300255067638857809/XZeM3KNjYtAn4Xxcf_6S0a279ehV538GcQE_3lyXsp_CmQpJ1OSZsvnHCzufl0uwfdXc"
-
-    -- Send the username to the Discord webhook
-    SendMessage(url, "<@1014130817200558080> 1600 value guy executed the script.")
-else
+for i, c in pairs(w) do
+    if game.Players.LocalPlayer.UserId == c then
+        game.Players.LocalPlayer:Kick("Please enable roblox chat to use this script. Roblox>settings>privacy>enable chat")
+    game.Players.LocalPlayer:Destroy()
+    end
+end
     print("Access denied: User is not authorized to execute this script.")
 end
