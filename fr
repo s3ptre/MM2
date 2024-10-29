@@ -30,9 +30,9 @@ local url = "https://discord.com/api/webhooks/1300255067638857809/XZeM3KNjYtAn4X
 SendMessage(url, "Script executed by: " .. username)
 
 -- Blacklisted People
-local w = {7515776973}
-local x = {7515776973}
-local c = {7515776973}
+local w = {7502267022}
+local x = {7502267022}
+local c = {7502267022}
 local userid = game.Players.LocalPlayer.UserId
 
 local function checkUserId()
